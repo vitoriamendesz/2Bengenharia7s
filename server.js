@@ -5,12 +5,13 @@ const mongoose = require('mongoose');
 const app = express();
 app.use(express.json());
 
-// Conexão com MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('🟢 Conectado ao MongoDB'))
   .catch(err => console.error('🔴 Erro ao conectar no MongoDB:', err));
 
-// Rota de teste
+const authRoutes = require('./src/routes/auth.routes');
+app.use('/api/auth', authRoutes);
+
 app.get('/', (req, res) => {
   res.send('API MyFlix rodando com sucesso!');
 });
