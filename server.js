@@ -18,6 +18,9 @@ app.use('/api/auth', authRoutes);
 const adminRoutes = require('./src/routes/admin.routes');
 app.use('/api/admin', adminRoutes);
 
+const movieRoutes = require('./src/routes/movie.routes');
+app.use('/api/movies', movieRoutes);
+
 app.get('/', (req, res) => {
   res.send('API MyFlix rodando com sucesso!');
 });
