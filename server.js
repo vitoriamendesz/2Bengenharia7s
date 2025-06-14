@@ -9,6 +9,9 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('🟢 Conectado ao MongoDB'))
   .catch(err => console.error('🔴 Erro ao conectar no MongoDB:', err));
 
+const protectedRoutes = require('./src/routes/protected.routes');
+app.use('/api/protected', protectedRoutes);
+
 const authRoutes = require('./src/routes/auth.routes');
 app.use('/api/auth', authRoutes);
 
