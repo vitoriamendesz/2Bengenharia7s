@@ -5,6 +5,70 @@ Projeto desenvolvido como atividade prática de autenticação com JWT e control
 ---
 
 ## 📌 Funcionalidades
+1. Cadastro de Usuários
+- Permite o registro de novos usuários com os campos: `nome`, `email`, `senha`, `role`.
+- Role pode ser `user` ou `admin`.
+Rota:POST http://localhost:3000/api/auth/register
+json:
+{
+  "name": "Novo Usuário",
+  "email": "novo@email.com",
+  "password": "123456",
+  "role": "user"
+}
+Você também pode testar com "role": "admin" para criar um administrador.
+
+2. Autenticação com JWT
+-Implementar um sistema de login que gere um token JWT
+-Permitir acesso a endpoints apenas com token válido
+Rota:POST http://localhost:3000/api/auth/login
+json:
+{
+  "email": "vitoria@email.com",
+  "password": "1234567"
+}
+
+3.Controle de Acesso por Role
+1. Teste com admin
+Faça login com o usuário admin (ex: Vitoria)
+POST http://localhost:3000/api/auth/login
+json:
+{
+  "email": "vitoria@email.com",
+  "password": "1234567"
+}
+GET http://localhost:3000/api/admin/usuarios
+No header: Authorization: Bearer SEU_TOKEN_DA_VITORIA
+
+ 2. Teste com usuário comum 
+ POST http://localhost:3000/api/auth/login
+ json:
+ {
+  "email": "gabriel@email.com",
+  "password": "1234567"
+}
+GET http://localhost:3000/api/admin/usuarios
+Authorization: Bearer SEU_TOKEN_DA_VITORIA
+
+4.Gerenciamento de Usuários
+-User pode ver e editar seu próprio perfil
+-Admin pode ver, editar e deletar qualquer usuário
+
+Parte 1: User
+PUT http://localhost:3000/api/users/me
+json:
+{
+  "name": "Vitória G"
+}
+
+Parte 2: Admin
+Ver usuário por ID:
+GET http://localhost:3000/api/admin/usuarios
+Editar usuário por ID:
+PUT http://localhost:3000/api/admin/usuarios/ID_DA_VITORIA
+Deletar usuário:
+DELETE http://localhost:3000/api/admin/usuarios/ID_DA_VITORIA
+
 
 - Cadastro e login de usuários com geração de **JWT**
 - Controle de acesso com **roles (admin/user)**
