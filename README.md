@@ -77,6 +77,53 @@ DELETE http://localhost:3000/api/admin/usuarios/ID_DA_VITORIA
 - `Admin` pode:
   - Listar todos os usuários
   - Listar todos os filmes cadastrados
+ 
+1. Criar um filme (user autenticado)
+Método: POST
+Rota: http://localhost:3000/api/movies
+Headers:
+Authorization: Bearer SEU_TOKEN_USER
+(JSON):
+{
+  "title": "Matrix",
+  "description": "Neo descobre a Matrix",
+  "year": 1999
+}
+
+2. Listar seus próprios filmes
+Método: GET
+Rota: http://localhost:3000/api/movies/me
+Header:
+Authorization: Bearer SEU_TOKEN_USER
+
+3. Editar um filme criado por você
+Método: PUT
+Rota: http://localhost:3000/api/movies/:id
+(Substitua :id pelo ID real do filme que você criou)
+Authorization: Bearer SEU_TOKEN_USER
+{
+  "title": "Matrix Reloaded",
+  "year": 2003
+}
+
+4. Deletar um filme criado por você
+Método: DELETE
+Rota: http://localhost:3000/api/movies/:id
+(Substitua :id pelo ID do filme)
+Header:
+Authorization: Bearer SEU_TOKEN_USER
+
+5. Listar todos os filmes (admin)
+Método: GET
+Rota: http://localhost:3000/api/movies/all
+Header:
+Authorization: Bearer SEU_TOKEN_ADMIN
+
+6. Listar todos os usuários (admin)
+Método: GET
+Rota: http://localhost:3000/api/admin/usuarios
+Header:
+Authorization: Bearer SEU_TOKEN_ADMIN
 
 ---
 
